@@ -56,3 +56,13 @@ test "err defer" {
         return;
     };
 }
+
+fn createFile() !void {
+    return error.AccessDenied;
+}
+
+test "inferred error test" {
+    const x: error{AccessDenied}!void = createFile();
+
+    _ = x catch {};
+}
