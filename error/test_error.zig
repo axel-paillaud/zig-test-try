@@ -68,3 +68,7 @@ test "inferred error test" {
     //we must unwrap it with "try", "catch", or "if" by any means
     _ = x catch {};
 }
+
+const A = error{ NotDir, PathNotFound };
+const B = error{ OutOfMemory, PathNotFound };
+const C = A || B;
