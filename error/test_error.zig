@@ -28,3 +28,16 @@ test "returning an error" {
         return;
     };
 }
+
+fn failFn() error{Oops}!i32 {
+    try failingFunction();
+    return 12;
+}
+
+test "try" {
+    const v = failFn() catch |err| {
+        try expect(err == error.Oops);
+        return;
+    };
+    try expect(v == 12); // Never reached
+}
